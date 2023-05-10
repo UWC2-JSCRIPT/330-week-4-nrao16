@@ -10,12 +10,12 @@ const isLoggedIn = async (req, res, next) => {
     } else {
         console.log(`req bearer token:${bearerToken}`);
         const userId = await tokenDAO.getUserIdFromToken(bearerToken);
-        console.log(`userId:${userId}`);
         if (!userId) {
             res.status(401).send('Invalid Bearer token');
         }
         else {
-            req.userId = userId;
+            console.log(`userId:${userId.toString()}`);
+            req.userId = userId.toString();
             next();
         }
     }
