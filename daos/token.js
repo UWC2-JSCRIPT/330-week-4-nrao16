@@ -18,7 +18,6 @@ module.exports.makeTokenForUserId = async (userId) => {
     try {
         const uuidToken = uuidv4();
         const created = await Token.create({ token: uuidToken, userId: userId });
-        console.log(`created-${created}`);
         return created;
     } catch (e) {
         if (e.message.includes('validation failed') || e.message.includes('dup key')) {
